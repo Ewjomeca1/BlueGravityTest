@@ -1,5 +1,5 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Scr_Inventory_InventorySlot : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
