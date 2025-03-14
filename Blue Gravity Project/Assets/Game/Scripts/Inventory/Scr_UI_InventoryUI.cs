@@ -10,7 +10,7 @@ public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
 
     private void Start()
     {
-
+        _inventory = Scr_Inventory_BaseInventory.Instance;
         _slots = _itemParent.GetComponentsInChildren<Scr_Inventory_InventorySlot>();
 
         _inventory.AddObserver(this);
