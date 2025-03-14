@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5672d32a7f5d44b9a158a960479a39, type: 3}
-  m_Name: PlayerSettings
+  m_Script: {fileID: 11500000, guid: 3fe7da75aefc20342a6964cfc0656324, type: 3}
+  m_Name: Item
   m_EditorClassIdentifier: 
-  _maxSpeed: 8
-  _acceleration: 20
-  _friction: 15
-  _gravity: -25
+  _itemName: Star Fish
+  _itemDescription: Is a star fish
+  _itemSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  _maxStack: 3
+  _isEquippable: 0
