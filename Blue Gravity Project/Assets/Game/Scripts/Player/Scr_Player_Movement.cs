@@ -17,6 +17,8 @@ public class Scr_Player_Movement : MonoBehaviour
     [SerializeField] private float _groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask _groundLayer;
 
+    [SerializeField] private float _rotationSpeed = 10f;
+    
     // Variáveis de estado
     private Vector2 _moveInput;
     private Vector3 _velocity;
@@ -65,6 +67,8 @@ public class Scr_Player_Movement : MonoBehaviour
             // Aumenta a velocidade gradualmente até o valor máximo
             _velocity.x = Mathf.MoveTowards(_velocity.x, moveDirection.x * targetSpeed, acceleration * Time.deltaTime);
             _velocity.z = Mathf.MoveTowards(_velocity.z, moveDirection.z * targetSpeed, acceleration * Time.deltaTime);
+            
+            RotatePlayer(moveDirection);
         }
         else
         {
@@ -82,6 +86,12 @@ public class Scr_Player_Movement : MonoBehaviour
         _controller.Move(_velocity * Time.deltaTime);
     }
 
+    public void RotatePlayer(Vector3 moveDirection)
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+    }
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
         _moveInput = context.ReadValue<Vector2>();

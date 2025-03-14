@@ -6,12 +6,11 @@ public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
     [SerializeField] private GameObject _inventoryUI;
 
     [SerializeField] private Scr_Inventory_BaseInventory _inventory;
-    [SerializeField] private Scr_Inventory_InventorySlot[] _slots;
+    [SerializeField] private GameObject _slotPrefab;
 
     private void Start()
     {
         _inventory = Scr_Inventory_BaseInventory.Instance;
-        _slots = _itemParent.GetComponentsInChildren<Scr_Inventory_InventorySlot>();
 
         _inventory.AddObserver(this);
 
@@ -20,20 +19,25 @@ public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
 
     public void OnInventoryChanged(Scr_Inventory_BaseInventory inventory)
     {
-        throw new System.NotImplementedException();
+        UpdateUI();
     }
 
     public void UpdateUI()
     {
-        for (int i = 0; i < _slots.Length; i++)
+        foreach (Transform child in _itemParent) //Destroy all slots
         {
-            if (i < _inventory.Items.Count)
+            Destroy(child.gameObject);
+        }
+
+        for (int i = 0; i < _inventory.Items.Count; i++)
+        {
+            GameObject slot = Instantiate(_slotPrefab, _itemParent);
+
+            Scr_Inventory_InventorySlot inventorySlot = slot.GetComponent<Scr_Inventory_InventorySlot>();
+
+            if (inventorySlot != null)
             {
-                _slots[i].AddItem(_inventory.Items[i]);
-            }
-            else
-            {
-                _slots[i].ClearSlot();
+                inventorySlot.AddItem(_inventory.Items[i]);
             }
         }
     }
