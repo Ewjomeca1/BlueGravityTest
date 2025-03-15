@@ -6,6 +6,7 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
 {
     [SerializeField] private List<Scr_SO_Item> _items = new List<Scr_SO_Item>();
     [SerializeField] private int _maxSlots = 10;
+    [SerializeField] private List<string> _itemNames = new List<string>(); // List to know the names of items
     
     private static Scr_Inventory_BaseInventory _instance;
 
@@ -14,6 +15,10 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
     public List<Scr_SO_Item> Items
     {
         get { return _items; }
+    }
+    public List<string> ItemNames
+    {
+        get { return _itemNames; }
     }
 
     public static Scr_Inventory_BaseInventory Instance
@@ -29,7 +34,6 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -60,6 +64,7 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
         if (_items.Count < _maxSlots)
         {
             _items.Add(item);
+            _itemNames.Add(item.ItemID);
             NotifyObservers(); // Notify Observers
             return true;
         }
@@ -70,6 +75,25 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
     public void RemoveItem(Scr_SO_Item item)
     {
         _items.Remove(item);
+        _itemNames.Remove(item.ItemID);
+        NotifyObservers();
+    }
+
+    public void LoadItems(List<string> savedItemNames, List<Scr_SO_Item> allAvailableItems)
+    {
+        _items.Clear();
+        _itemNames.Clear();
+
+        foreach (var itemName in savedItemNames)
+        {
+            // Look the item with the corresponding name in the list of availableItems
+            Scr_SO_Item item = allAvailableItems.Find(i => i.name == itemName);
+            if (item != null)
+            {
+                _items.Add(item);
+                _itemNames.Add(itemName);
+            }
+        }
         NotifyObservers();
     }
 }

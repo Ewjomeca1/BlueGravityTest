@@ -9,7 +9,8 @@ public class Scr_SO_Item : ScriptableObject
     [SerializeField] private int _maxStack;
     [SerializeField] private bool _isEquippable;
     [SerializeField] private int _itemValue;
-    
+
+    public string ItemID => this.name;
     public string ItemName
     {
         get { return _itemName; }
