@@ -35,7 +35,7 @@ public class Scr_Player_UI : MonoBehaviour
         Debug.Log("teste");
     }
 
-    private void ToggleMenu()
+    public void ToggleMenu()
     {
         if (_menuPanel != null)
         {

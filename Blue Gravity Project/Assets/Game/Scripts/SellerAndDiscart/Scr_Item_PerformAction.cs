@@ -5,7 +5,6 @@ using UnityEngine;
 public class Scr_Item_PerformAction : MonoBehaviour, Scr_Interface_ItemSeller
 {
     [SerializeField] private Scr_Inventory_BaseInventory _inventory;
-    [SerializeField] private int _sellPrice;
 
     private Scr_Inventory_ItemDragrabble _currentItem;
 

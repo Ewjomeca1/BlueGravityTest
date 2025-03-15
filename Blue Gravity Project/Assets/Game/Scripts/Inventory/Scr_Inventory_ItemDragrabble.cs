@@ -13,7 +13,6 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     
     [SerializeField] private Image _image;
     [SerializeField] private Image _isSelectedImage;
-    [SerializeField] private TextMeshProUGUI _itemStack;
     
     [SerializeField] private Button _itemButton;
 
@@ -38,8 +37,6 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
 
     private void Start()
     {
-        _itemStack.text = _item.MaxStack.ToString();
-        
         _itemButton = GetComponentInChildren<Button>();
         
         if (_itemButton != null)

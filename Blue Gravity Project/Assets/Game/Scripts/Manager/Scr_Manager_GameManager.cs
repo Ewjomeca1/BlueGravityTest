@@ -73,4 +73,9 @@ public class Scr_Manager_GameManager : MonoBehaviour
     {
         SavePlayer();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

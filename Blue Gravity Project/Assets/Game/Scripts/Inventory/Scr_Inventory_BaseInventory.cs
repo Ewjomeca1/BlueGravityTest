@@ -12,6 +12,11 @@ public class Scr_Inventory_BaseInventory : MonoBehaviour // This Script goes to 
 
     private List<Scr_Interface_InventoryObserver> _observers = new List<Scr_Interface_InventoryObserver>();
 
+    public int MaxSlots
+    {
+        get { return _maxSlots; }
+    }
+
     public List<Scr_SO_Item> Items
     {
         get { return _items; }

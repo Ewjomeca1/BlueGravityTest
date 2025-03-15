@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemName: Letter
   _itemDescription: A letter that has traces of a lost love, almost worthless at
     this point
-  _itemSprite: {fileID: -358436848, guid: f985dfa29e75fb14b8dd1fa70ca45f7e, type: 3}
+  _itemSprite: {fileID: 1783818638, guid: 27852ed699c5c904fa158902ed9cb17e, type: 3}
   _maxStack: 3
   _isHealabble: 0
   _itemValue: 3

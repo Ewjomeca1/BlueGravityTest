@@ -34,5 +34,7 @@ public class Scr_Item_CollectableItem : MonoBehaviour, Scr_Interface_PlayerInter
         {
             Debug.Log("Inventory is Full");
         }
+        
+        Scr_Manager_GameManager.Instance.UIDisplay.gameObject.SetActive(false);
     }
 }
