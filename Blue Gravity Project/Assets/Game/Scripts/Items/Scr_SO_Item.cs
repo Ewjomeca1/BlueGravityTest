@@ -10,6 +10,7 @@ public class Scr_SO_Item : ScriptableObject
     [SerializeField] private int _maxStack;
     [FormerlySerializedAs("_isEquippable")] [SerializeField] private bool _isHealabble;
     [SerializeField] private int _itemValue;
+    [SerializeField] private int _itemHealthValue; // how much this item cure the player
 
     public string ItemID => this.name;
     public string ItemName
@@ -46,5 +47,11 @@ public class Scr_SO_Item : ScriptableObject
     {
         get { return _itemValue; }
         set { _itemValue = value; }
+    }
+    
+    public int ItemHealthValue
+    {
+        get { return _itemHealthValue; }
+        set { _itemHealthValue = value; }
     }
 }

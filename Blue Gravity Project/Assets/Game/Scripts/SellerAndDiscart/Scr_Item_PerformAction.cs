@@ -41,7 +41,7 @@ public class Scr_Item_PerformAction : MonoBehaviour, Scr_Interface_ItemSeller
 
         if (_currentItem.Item.IsHealabble)
         {
-            Scr_Manager_GameManager.Instance.AddPlayerHealth(10f);
+            Scr_Manager_GameManager.Instance.AddPlayerHealth(_currentItem.Item.ItemHealthValue);
             
             _inventory.RemoveItem(_currentItem.Item);
         
