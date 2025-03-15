@@ -25,6 +25,8 @@ public class Scr_Item_PerformAction : MonoBehaviour, Scr_Interface_ItemSeller
         NotifyItemSold(_currentItem);
 
         _currentItem = null;
+        
+        Scr_Manager_GameManager.Instance.SavePlayer();
     }
     public void DiscartSelectedItem()
     {
@@ -33,6 +35,8 @@ public class Scr_Item_PerformAction : MonoBehaviour, Scr_Interface_ItemSeller
         _inventory.RemoveItem(_currentItem.Item);
         
         _currentItem = null;
+        
+        Scr_Manager_GameManager.Instance.SavePlayer();
     }
 
     public void HealPlayerSelectedItem()
@@ -46,6 +50,8 @@ public class Scr_Item_PerformAction : MonoBehaviour, Scr_Interface_ItemSeller
             _inventory.RemoveItem(_currentItem.Item);
         
             _currentItem = null;
+            
+            Scr_Manager_GameManager.Instance.SavePlayer();
         }
     }
     private void NotifyItemSold(Scr_Inventory_ItemDragrabble item)

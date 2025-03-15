@@ -80,6 +80,8 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
         
         Scr_Manager_ItemSelectionNotifier.NotifyItemSelected(this);
         
+        Scr_Manager_AudioManager.Instance.PlaySound(SoundType.UIClick);
+        
         _isSelectedImage.gameObject.SetActive(true);
     }
 }

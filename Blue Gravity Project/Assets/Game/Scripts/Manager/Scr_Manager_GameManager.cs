@@ -9,7 +9,8 @@ public class Scr_Manager_GameManager : MonoBehaviour
     [SerializeField] private float _playerHealth;
     
     [SerializeField] public List<Scr_SO_Item> allAvailableItems = new List<Scr_SO_Item>();
-    
+
+    [SerializeField] private GameObject _uiDisplay; // this is not the best aproach, but this will be for now
     public int PlayerMoney
     {
         get { return _playerMoney; }
@@ -20,6 +21,10 @@ public class Scr_Manager_GameManager : MonoBehaviour
         get { return _playerHealth; }
     }
     
+    public GameObject UIDisplay
+    {
+        get { return _uiDisplay; }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -36,6 +41,8 @@ public class Scr_Manager_GameManager : MonoBehaviour
     private void Start()
     {
         LoadPlayer();
+        
+        Scr_Manager_AudioManager.Instance.PlaySound(SoundType.Ambient);
     }
 
     public void AddPlayerMoney(int value)

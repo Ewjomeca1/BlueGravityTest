@@ -26,7 +26,7 @@ public class Scr_Player_Interaction : MonoBehaviour
 
     private void OnInteractedEnded(InputAction.CallbackContext obj)
     {
-        Debug.Log("Interaction Ended");
+        Scr_Manager_GameManager.Instance.UIDisplay.GetComponent<Scr_UI_KeyboardKey>().ChangeToNormalSprite();
     }
 
     private void OnInteracted(InputAction.CallbackContext obj)
@@ -47,6 +47,8 @@ public class Scr_Player_Interaction : MonoBehaviour
                 break; // Interact only with the first obj founded
             }
         }
+        
+        Scr_Manager_GameManager.Instance.UIDisplay.GetComponent<Scr_UI_KeyboardKey>().ChangeToPressedSprite();
     }
     private void OnDrawGizmosSelected()
     {

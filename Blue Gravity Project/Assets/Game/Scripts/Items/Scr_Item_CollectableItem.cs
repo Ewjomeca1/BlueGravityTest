@@ -8,14 +8,14 @@ public class Scr_Item_CollectableItem : MonoBehaviour, Scr_Interface_PlayerInter
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Pressione E para coletar " + _item.ItemName);
+            Scr_Manager_GameManager.Instance.UIDisplay.gameObject.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Saiu da área de coleta");
+            Scr_Manager_GameManager.Instance.UIDisplay.gameObject.SetActive(false);
         }
     }
 
@@ -26,6 +26,7 @@ public class Scr_Item_CollectableItem : MonoBehaviour, Scr_Interface_PlayerInter
         if (wasAdded)
         {
             Debug.Log(_item.ItemName + "coletado");
+            Scr_Manager_AudioManager.Instance.PlaySound(SoundType.ItemPickup);
             Scr_Manager_GameManager.Instance.SavePlayer();
             Destroy(gameObject); // Destroy item
         }
