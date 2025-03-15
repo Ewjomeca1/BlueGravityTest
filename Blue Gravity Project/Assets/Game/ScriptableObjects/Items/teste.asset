@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: testa
   _itemDescription: taesf
-  _itemSprite: {fileID: 1215524766, guid: fabfbbb0a90cefb458dcc4da979257d0, type: 3}
+  _itemSprite: {fileID: 1745490012, guid: 5cfbb0383998a2f4e9f5f64b7c4da837, type: 3}
   _maxStack: 3
   _isEquippable: 0

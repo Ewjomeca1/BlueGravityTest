@@ -13,11 +13,9 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _itemStack;
     
-    [SerializeField] private Button _deleteItemButton;
     [SerializeField] private Button _itemButton;
 
     private Transform _parentAfterDrag;
-
     public Transform ParentAfterDrag
     {
         get
@@ -30,26 +28,20 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
         }
     }
 
+    public Scr_SO_Item Item
+    {
+        get { return _item; }
+        set { _item = value; }
+    } 
+
     private void Start()
     {
         _itemStack.text = _item.MaxStack.ToString();
     }
 
-    public void AddItem(Scr_SO_Item item)
+    public void InitializeItem()
     {
-        
-    }
-
-    public void ClearSlot()
-    {
-        _item = null;
-        Destroy(gameObject);
-    }
-
-    public void ActivateDeleteItem()
-    {
-        bool isDeleteButtonActive = !_deleteItemButton.gameObject.activeSelf; // Invert current state
-        _deleteItemButton.gameObject.SetActive(isDeleteButtonActive);
+        _image.sprite = _item.ItemSprite;
     }
     
     public void OnBeginDrag(PointerEventData eventData)
@@ -69,10 +61,5 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     {
         transform.SetParent(_parentAfterDrag);
         _image.raycastTarget = true;
-    }
-
-    public void SetItem(Scr_SO_Item item)
-    {
-        _image.sprite = _item.ItemSprite;
     }
 }

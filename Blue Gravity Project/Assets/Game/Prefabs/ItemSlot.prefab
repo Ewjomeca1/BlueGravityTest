@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1893906594, guid: ca4c46ad171b579408cf917995096a42, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,7 +405,6 @@ MonoBehaviour:
   _item: {fileID: 11400000, guid: c59f92404d88a5b45aaa53808d5545dc, type: 2}
   _image: {fileID: 5095310469242342594}
   _itemStack: {fileID: 988099748903333148}
-  _deleteItemButton: {fileID: 1124467944509472881}
   _itemButton: {fileID: 6387179527792859385}
 --- !u!114 &6387179527792859385
 MonoBehaviour:

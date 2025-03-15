@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
@@ -7,6 +8,8 @@ public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
 
     [SerializeField] private Scr_Inventory_BaseInventory _inventory;
     [SerializeField] private GameObject _slotPrefab;
+
+    [SerializeField] private List<Scr_Inventory_InventorySlot> _inventorySlots;
 
     private void Start()
     {
@@ -24,20 +27,37 @@ public class Scr_UI_InventoryUI : MonoBehaviour, Scr_Interface_InventoryObserver
 
     public void UpdateUI()
     {
-        foreach (Transform child in _itemParent) //Destroy all slots
+        for (int i = 0; i < _inventorySlots.Count; i++)
         {
-            Destroy(child.gameObject);
+            Transform slotTransform = _inventorySlots[i].transform;
+
+            foreach (Transform child in slotTransform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
-        for (int i = 0; i < _inventory.Items.Count; i++)
+        foreach (var item in _inventory.Items)
         {
-            GameObject slot = Instantiate(_slotPrefab, _itemParent);
+            AddItemToFirstEmptySlot(item);
+        }
+    }
 
-            Scr_Inventory_InventorySlot inventorySlot = slot.GetComponent<Scr_Inventory_InventorySlot>();
-
-            if (inventorySlot != null)
+    private void AddItemToFirstEmptySlot(Scr_SO_Item item)
+    {
+        foreach (var slot in _inventorySlots)
+        {
+            if (slot.transform.childCount == 0)
             {
-                inventorySlot.AddItem(_inventory.Items[i]);
+                GameObject itemObject = Instantiate(_slotPrefab, slot.transform);
+                
+                Scr_Inventory_ItemDragrabble draggableItem = itemObject.GetComponent<Scr_Inventory_ItemDragrabble>();
+                
+                //Configure and Initialize item
+                draggableItem.Item = item;
+                draggableItem.InitializeItem();
+                
+                break; // Get out of the loop after add the item in the empty slot
             }
         }
     }
