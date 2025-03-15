@@ -14,7 +14,7 @@ public class Scr_Item_CollectableItem : MonoBehaviour
             if (wasAdded)
             {
                 Debug.Log(_item.ItemName + "coletado");
-                //Scr_Manager_GameManager.Instance.SaveGame();
+                Scr_Manager_GameManager.Instance.SavePlayer();
                 Destroy(gameObject); // Destroy item
             }
             else

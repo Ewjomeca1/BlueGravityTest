@@ -11,7 +11,7 @@ public class Scr_UI_ItemDisplay : MonoBehaviour, Scr_Interface_SelectionListener
     [SerializeField] private TextMeshProUGUI _itemDescription;
     [SerializeField] private Scr_Inventory_ItemDragrabble _currentItem;
     
-    [SerializeField] private Scr_Item_SellerAndDiscart _itemSeller;
+    [SerializeField] private Scr_Item_PerformAction _itemSeller;
     
     private void OnEnable()
     {
@@ -47,7 +47,7 @@ public class Scr_UI_ItemDisplay : MonoBehaviour, Scr_Interface_SelectionListener
         _itemDisplayUI.SetActive(false);
     }
 
-    public void SetItemSeller(Scr_Item_SellerAndDiscart itemSeller)
+    public void SetItemSeller(Scr_Item_PerformAction itemSeller)
     {
         _itemSeller = itemSeller;
     }

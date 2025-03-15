@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Scr_Scriptable_Items", menuName = "Scriptable Objects/Scr_Scriptable_Items")]
 public class Scr_SO_Item : ScriptableObject
@@ -7,7 +8,7 @@ public class Scr_SO_Item : ScriptableObject
     [SerializeField] private string _itemDescription;
     [SerializeField] private Sprite _itemSprite;
     [SerializeField] private int _maxStack;
-    [SerializeField] private bool _isEquippable;
+    [FormerlySerializedAs("_isEquippable")] [SerializeField] private bool _isHealabble;
     [SerializeField] private int _itemValue;
 
     public string ItemID => this.name;
@@ -35,10 +36,10 @@ public class Scr_SO_Item : ScriptableObject
         set { _maxStack = value; }
     }
     
-    public bool IsEquippable
+    public bool IsHealabble
     {
-        get { return _isEquippable; }
-        set { _isEquippable = value; }
+        get { return _isHealabble; }
+        set { _isHealabble = value; }
     }
 
     public int ItemValue

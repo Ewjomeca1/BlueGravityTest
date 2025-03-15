@@ -9,8 +9,8 @@ public class PlayerData
 
     public PlayerData(Scr_Manager_GameManager player)
     {
-        playerMoney = player._playerMoney;
-        playerHealth = player._playerHealth;
+        playerMoney = player.PlayerMoney;
+        playerHealth = player.PlayerHealth;
         
         playerItems = new List<string>(Scr_Inventory_BaseInventory.Instance.ItemNames);
     }
