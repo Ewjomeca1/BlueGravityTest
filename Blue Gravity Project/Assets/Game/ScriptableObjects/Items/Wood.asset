@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe7da75aefc20342a6964cfc0656324, type: 3}
+  m_Name: Wood
+  m_EditorClassIdentifier: 
+  _itemName: Wood
+  _itemDescription: Just a pile of wood, you can sell this for 25 gold
+  _itemSprite: {fileID: -358436848, guid: f985dfa29e75fb14b8dd1fa70ca45f7e, type: 3}
+  _maxStack: 3
+  _isHealabble: 0
+  _itemValue: 25
+  _itemHealthValue: 0
