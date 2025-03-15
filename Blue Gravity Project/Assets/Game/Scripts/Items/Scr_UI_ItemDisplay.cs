@@ -1,39 +1,38 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scr_UI_ItemDisplay : MonoBehaviour
+public class Scr_UI_ItemDisplay : MonoBehaviour, Scr_Interface_SelectionListener, Scr_Interface_ItemSoldObserver
 {
-    private static Scr_UI_ItemDisplay _instance;
-
     [SerializeField] private GameObject _itemDisplayUI;
     [SerializeField] private Image _itemIcon;
     [SerializeField] private TextMeshProUGUI _itemDescription;
+    [SerializeField] private Scr_Inventory_ItemDragrabble _currentItem;
     
-    public static Scr_UI_ItemDisplay Instance
+    [SerializeField] private Scr_Item_SellerAndDiscart _itemSeller;
+    
+    private void OnEnable()
     {
-        get { return _instance; }
+        Scr_Manager_ItemSelectionNotifier.AddObserver(this);
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Scr_Manager_ItemSelectionNotifier.RemoveObserver(this);
     }
-
-    private void Start()
+    
+    public void OnItemSelected(Scr_Inventory_ItemDragrabble item)
     {
-        HideItemDisplay();
-    }
+        _currentItem = item;
+        DisplayItem(item.Item);
 
-    public void DisplayItem(Scr_SO_Item item)
+        SetItemSeller(_itemSeller);
+        _itemSeller.SetSelectedItem(_currentItem);
+    }
+    
+    private void DisplayItem(Scr_SO_Item item)
     {
         if(item == null) return;
         
@@ -46,5 +45,14 @@ public class Scr_UI_ItemDisplay : MonoBehaviour
     public void HideItemDisplay()
     {
         _itemDisplayUI.SetActive(false);
+    }
+
+    public void SetItemSeller(Scr_Item_SellerAndDiscart itemSeller)
+    {
+        _itemSeller = itemSeller;
+    }
+    public void OnItemSold(Scr_Inventory_ItemDragrabble item)
+    {
+        Debug.Log("Item was selled");
     }
 }

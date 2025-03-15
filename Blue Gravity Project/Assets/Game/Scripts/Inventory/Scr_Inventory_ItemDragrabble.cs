@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,6 +46,8 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
         {
             _itemButton.onClick.AddListener(OnItemClicked);
         }
+        
+        
     }
 
     public void InitializeItem()
@@ -71,11 +74,12 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
         _image.raycastTarget = true;
     }
     
-    private void OnItemClicked()
+    public void OnItemClicked()
     {
         if(_item == null) return;
         
-        Scr_UI_ItemDisplay.Instance.DisplayItem(_item);
+        Scr_Manager_ItemSelectionNotifier.NotifyItemSelected(this);
+        
         _isSelectedImage.gameObject.SetActive(true);
     }
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   _itemSprite: {fileID: 1745490012, guid: 5cfbb0383998a2f4e9f5f64b7c4da837, type: 3}
   _maxStack: 3
   _isEquippable: 0
+  _itemValue: 12

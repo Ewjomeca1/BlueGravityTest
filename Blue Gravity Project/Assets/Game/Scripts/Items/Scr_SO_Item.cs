@@ -8,6 +8,7 @@ public class Scr_SO_Item : ScriptableObject
     [SerializeField] private Sprite _itemSprite;
     [SerializeField] private int _maxStack;
     [SerializeField] private bool _isEquippable;
+    [SerializeField] private int _itemValue;
     
     public string ItemName
     {
@@ -37,5 +38,11 @@ public class Scr_SO_Item : ScriptableObject
     {
         get { return _isEquippable; }
         set { _isEquippable = value; }
+    }
+
+    public int ItemValue
+    {
+        get { return _itemValue; }
+        set { _itemValue = value; }
     }
 }

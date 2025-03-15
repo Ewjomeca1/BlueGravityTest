@@ -132,8 +132,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 150098651}
+  - component: {fileID: 150098652}
   m_Layer: 5
-  m_Name: InventoryActions
+  m_Name: InventorySellAndDiscart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,6 +161,20 @@ RectTransform:
   m_AnchoredPosition: {x: -187.84, y: -384.88}
   m_SizeDelta: {x: 125.05127, y: 434.22998}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &150098652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150098650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb6b51a19958a144b40fc5c81182862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventory: {fileID: 1768064286}
+  _sellPrice: 15
 --- !u!224 &250796767 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 739896365643478207, guid: 154bf05b44e29394f8b7ae046da4fdd0,
@@ -621,6 +636,8 @@ MonoBehaviour:
   _itemDisplayUI: {fileID: 413067985}
   _itemIcon: {fileID: 1377513877}
   _itemDescription: {fileID: 655663265}
+  _currentItem: {fileID: 0}
+  _itemSeller: {fileID: 150098652}
 --- !u!1001 &413426201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4154,6 +4171,7 @@ GameObject:
   - component: {fileID: 1875726984}
   - component: {fileID: 1875726986}
   - component: {fileID: 1875726985}
+  - component: {fileID: 1875726987}
   m_Layer: 5
   m_Name: SellItem
   m_TagString: Untagged
@@ -4219,6 +4237,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875726983}
   m_CullTransparentMesh: 1
+--- !u!114 &1875726987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875726983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1875726985}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150098652}
+        m_TargetAssemblyTypeName: Scr_Item_SellerAndDiscart, Assembly-CSharp
+        m_MethodName: SellSelectedItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1915077207
 GameObject:
   m_ObjectHideFlags: 0
