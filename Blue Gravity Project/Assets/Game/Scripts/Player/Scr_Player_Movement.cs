@@ -18,6 +18,7 @@ public class Scr_Player_Movement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     [SerializeField] private float _rotationSpeed = 10f;
+    [SerializeField] private float _angularSpeed = 2f;
     
     // Variáveis de estado
     private Vector2 _moveInput;
@@ -27,21 +28,16 @@ public class Scr_Player_Movement : MonoBehaviour
     
     private PlayerInput _playerInput;
     private InputAction _moveAction;
-    private InputAction _jumpAction;
-    private InputAction _sprintAction;
 
     private void Awake()
     {
-        // Configura o Input System
+        // Input System
         _playerInput = GetComponent<PlayerInput>();
         _moveAction = _playerInput.actions["Move"];
-        //_sprintAction = _playerInput.actions["Sprint"];
         
-        // Configura os callbacks
+        // callbacks
         _moveAction.performed += OnMovePerformed;
         _moveAction.canceled += OnMoveCanceled;
-        //_sprintAction.performed += OnSprintPerformed;
-        //_sprintAction.canceled += OnSprintCanceled;
     }
 
     private void Update()
@@ -88,9 +84,12 @@ public class Scr_Player_Movement : MonoBehaviour
 
     public void RotatePlayer(Vector3 moveDirection)
     {
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
         
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _angularSpeed * Time.deltaTime);
+        }
     }
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
@@ -100,16 +99,6 @@ public class Scr_Player_Movement : MonoBehaviour
     private void OnMoveCanceled(InputAction.CallbackContext context)
     {
         _moveInput = Vector2.zero;
-    }
-    
-    private void OnSprintPerformed(InputAction.CallbackContext context)
-    {
-        _isSprinting = true;
-    }
-    
-    private void OnSprintCanceled(InputAction.CallbackContext context)
-    {
-        _isSprinting = false;
     }
 
     public Vector2 GetMoveInput()
