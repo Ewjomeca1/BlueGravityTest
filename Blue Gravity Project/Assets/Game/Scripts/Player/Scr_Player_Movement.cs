@@ -19,6 +19,8 @@ public class Scr_Player_Movement : MonoBehaviour
 
     [SerializeField] private float _rotationSpeed = 10f;
     [SerializeField] private float _angularSpeed = 2f;
+
+    [SerializeField] private Animator _boatAnimator;
     
     // Variáveis de estado
     private Vector2 _moveInput;
@@ -28,16 +30,21 @@ public class Scr_Player_Movement : MonoBehaviour
     
     private PlayerInput _playerInput;
     private InputAction _moveAction;
+    private InputAction _useCrane;
 
     private void Awake()
     {
         // Input System
         _playerInput = GetComponent<PlayerInput>();
         _moveAction = _playerInput.actions["Move"];
+        _useCrane = _playerInput.actions["Use"];
         
         // callbacks
         _moveAction.performed += OnMovePerformed;
         _moveAction.canceled += OnMoveCanceled;
+        
+        _useCrane.performed += OnUseCranePerformed;
+        _useCrane.canceled += OnUseCraneCanceled;
     }
 
     private void Update()
@@ -64,6 +71,8 @@ public class Scr_Player_Movement : MonoBehaviour
             _velocity.x = Mathf.MoveTowards(_velocity.x, moveDirection.x * targetSpeed, acceleration * Time.deltaTime);
             _velocity.z = Mathf.MoveTowards(_velocity.z, moveDirection.z * targetSpeed, acceleration * Time.deltaTime);
             
+           
+            
             RotatePlayer(moveDirection);
         }
         else
@@ -80,6 +89,8 @@ public class Scr_Player_Movement : MonoBehaviour
 
         // Move o personagem no eixo Y (gravidade e pulo)
         _controller.Move(_velocity * Time.deltaTime);
+        
+        _boatAnimator.SetBool("Moving", moveDirection.magnitude > 0);
     }
 
     public void RotatePlayer(Vector3 moveDirection)
@@ -99,6 +110,15 @@ public class Scr_Player_Movement : MonoBehaviour
     private void OnMoveCanceled(InputAction.CallbackContext context)
     {
         _moveInput = Vector2.zero;
+    }
+    
+    private void OnUseCranePerformed(InputAction.CallbackContext context)
+    {
+        _boatAnimator.SetBool("Use", true);
+    }
+    private void OnUseCraneCanceled(InputAction.CallbackContext context)
+    {
+        _boatAnimator.SetBool("Use", false);
     }
 
     public Vector2 GetMoveInput()

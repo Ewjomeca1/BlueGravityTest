@@ -9,8 +9,9 @@ public class Scr_SO_PlayerInformations : ScriptableObject
         [SerializeField] private float _friction = 15f;
         
         [SerializeField] private float _gravity = 25f;
-    
-    
+
+
+        [SerializeField] private float _maxHealth = 100f;
         public float MaxSpeed
         {
             get { return _maxSpeed; }
@@ -33,5 +34,11 @@ public class Scr_SO_PlayerInformations : ScriptableObject
         {
             get { return _gravity; }
             set { _gravity = value; }
+        }
+        
+        public float MaxHealth
+        {
+            get { return _maxHealth; }
+            set { _maxHealth = value; }
         }
 }
