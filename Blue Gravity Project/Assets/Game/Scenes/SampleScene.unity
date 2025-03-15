@@ -576,6 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 413067986}
+  - component: {fileID: 413067987}
   m_Layer: 5
   m_Name: InventoryDetails
   m_TagString: Untagged
@@ -605,6 +606,21 @@ RectTransform:
   m_AnchoredPosition: {x: 136.46, y: 234.1759}
   m_SizeDelta: {x: 685.51, y: 167.6482}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &413067987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413067985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812713eda85a8a7459b78be6a02eb666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemDisplayUI: {fileID: 413067985}
+  _itemIcon: {fileID: 1377513877}
+  _itemDescription: {fileID: 655663265}
 --- !u!1001 &413426201
 PrefabInstance:
   m_ObjectHideFlags: 0

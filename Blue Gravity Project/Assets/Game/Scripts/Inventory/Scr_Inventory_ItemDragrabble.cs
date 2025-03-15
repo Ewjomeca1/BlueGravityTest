@@ -11,6 +11,7 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     [SerializeField] private Scr_SO_Item _item;
     
     [SerializeField] private Image _image;
+    [SerializeField] private Image _isSelectedImage;
     [SerializeField] private TextMeshProUGUI _itemStack;
     
     [SerializeField] private Button _itemButton;
@@ -37,6 +38,13 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     private void Start()
     {
         _itemStack.text = _item.MaxStack.ToString();
+        
+        _itemButton = GetComponentInChildren<Button>();
+        
+        if (_itemButton != null)
+        {
+            _itemButton.onClick.AddListener(OnItemClicked);
+        }
     }
 
     public void InitializeItem()
@@ -61,5 +69,13 @@ public class Scr_Inventory_ItemDragrabble : MonoBehaviour, IBeginDragHandler,IDr
     {
         transform.SetParent(_parentAfterDrag);
         _image.raycastTarget = true;
+    }
+    
+    private void OnItemClicked()
+    {
+        if(_item == null) return;
+        
+        Scr_UI_ItemDisplay.Instance.DisplayItem(_item);
+        _isSelectedImage.gameObject.SetActive(true);
     }
 }
